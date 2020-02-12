@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Emp {
@@ -20,6 +21,9 @@ public class Emp {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "dno")
     private Dept dept;
+  
+  @OneToOne(mappedBy="employee",cascade=CascadeType.ALL)
+    private Contact contact;
     
 public Emp() {
 	super();
@@ -34,6 +38,13 @@ public Emp(Integer eno, String name, String city, String desig) {
 }
 
 
+
+public Contact getContact() {
+	return contact;
+}
+public void setContact(Contact contact) {
+	this.contact = contact;
+}
 public Dept getDept() {
 	return dept;
 }

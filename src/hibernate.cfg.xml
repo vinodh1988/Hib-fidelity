@@ -13,5 +13,6 @@
         <mapping class="com.orm.model.Person"></mapping>
         <mapping class="com.orm.model.Dept"></mapping>
         <mapping class="com.orm.model.Emp"></mapping>
+        <mapping class="com.orm.model.Contact"></mapping>
     </session-factory>
 </hibernate-configuration>
