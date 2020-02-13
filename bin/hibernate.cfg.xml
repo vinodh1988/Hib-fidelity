@@ -14,5 +14,7 @@
         <mapping class="com.orm.model.Dept"></mapping>
         <mapping class="com.orm.model.Emp"></mapping>
         <mapping class="com.orm.model.Contact"></mapping>
+        <mapping class="com.orm.model.Course"></mapping>
+        <mapping class="com.orm.model.Trainer"></mapping>
     </session-factory>
 </hibernate-configuration>
