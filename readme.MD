@@ -10,6 +10,21 @@ Object-Relational-Mapping tool basically takes away the pain (perceived) of writ
 
 * An ORM tool keeps your object model separate from your persistence model, i.e., your java code need not know about your database tables. You write your data modification code in a programming language of your choice and the ORM tool will map that to the database for you.
 
+
+* In most cases, you don’t have to write much SQL and you really don’t end up writing SQL that caters to a specific database vendor (in the highly unlikely case that you decide to switch databases after writing an application).
+
+* ORMs also take away the repetitive, mind-numbing job of writing code that maps object properties to columns and vice-versa.
+
+## Hibernate framework
+
+Well, an Object-Relational-Mapping tool basically takes away the pain (perceived) of writing SQL. As object-oriented programmers, we tend to think in terms of objects.
+
+An ORM tool keeps your object model separate from your persistence model, i.e., your java code need not know about your database tables. You write your data modification code in a programming language of your choice and the ORM tool will map that to the database for you.
+
+In most cases, you don’t have to write much SQL and you really don’t end up writing SQL that caters to a specific database vendor (in the highly unlikely case that you decide to switch databases after writing an application).
+
+ORMs also take away the repetitive, mind-numbing job of writing code that maps object properties to columns and vice-versa.
+
 # Hibernate  API
 
 ### Session Factory
@@ -56,17 +71,3 @@ public class SessionProvider {
 
 }
 ```
-
-* In most cases, you don’t have to write much SQL and you really don’t end up writing SQL that caters to a specific database vendor (in the highly unlikely case that you decide to switch databases after writing an application).
-
-* ORMs also take away the repetitive, mind-numbing job of writing code that maps object properties to columns and vice-versa.
-
-## Hibernate framework
-
-Well, an Object-Relational-Mapping tool basically takes away the pain (perceived) of writing SQL. As object-oriented programmers, we tend to think in terms of objects.
-
-An ORM tool keeps your object model separate from your persistence model, i.e., your java code need not know about your database tables. You write your data modification code in a programming language of your choice and the ORM tool will map that to the database for you.
-
-In most cases, you don’t have to write much SQL and you really don’t end up writing SQL that caters to a specific database vendor (in the highly unlikely case that you decide to switch databases after writing an application).
-
-ORMs also take away the repetitive, mind-numbing job of writing code that maps object properties to columns and vice-versa.
