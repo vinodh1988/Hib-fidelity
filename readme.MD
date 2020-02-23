@@ -258,4 +258,74 @@ public class Contact {
 
  ```
 
- 
+ ## One to many mapping
+
+ consider the following tables which has one to many relationship
+
+mysql> desc emp;
+
+| Field | Type        | Null | Key | Default | Extra |
+|-------|-------------|------|-----|---------|-------|
+| eno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | NO   |     | NULL    |       |
+| city  | varchar(30) | NO   |     | NULL    |       |
+| desig | varchar(30) | NO   |     | NULL    |       |
+| dno   | int(11)     | YES  |     | NULL    |       |
+
+5 rows in set (0.59 sec)
+
+mysql> desc dept
+    
+| Field | Type        | Null | Key | Default | Extra |
+|-------|-------------|------|-----|---------|-------|
+| dno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | NO   |     | NULL    |       |
+
+2 rows in set (0.06 sec)
+
+The mapping is done in the following way
+
+```
+
+@Entity
+public class Dept {
+  @Id
+     private Integer dno;
+  @Column
+     private String name;
+  
+  @OneToMany(mappedBy = "dept", cascade = CascadeType.ALL)
+  private Set<Emp> employees;
+  
+  --
+  --
+  --
+}
+
+```
+
+and In the emp class,
+
+```
+
+@Entity
+public class Emp {
+  @Id
+    private Integer eno;
+  @Column
+    private String name;
+  @Column 
+    private String city;
+  @Column
+    private String desig;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "dno")
+    private Dept dept;
+    
+    ---
+    ---
+    ---
+}
+```
+
+
