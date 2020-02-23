@@ -193,17 +193,69 @@ mysql> desc emp;
 | city  | varchar(30) | NO   |     | NULL    |       |
 | desig | varchar(30) | NO   |     | NULL    |       |
 | dno   | int(11)     | YES  |     | NULL    |       |
-|-------|-------------|------|-----|---------|-------|
+
 5 rows in set (0.59 sec)
 
 mysql> desc contact;
-+--------+-------------+------+-----+---------+-------+
+
 | Field  | Type        | Null | Key | Default | Extra |
-+--------+-------------+------+-----+---------+-------+
+|--------|-------------|------|-----|---------|-------|
 | eno    | int(11)     | NO   | PRI | NULL    |       |
 | doorno | varchar(30) | NO   |     | NULL    |       |
 | street | varchar(30) | NO   |     | NULL    |       |
 | mobile | varchar(15) | NO   |     | NULL    |       |
-+--------+-------------+------+-----+---------+-------+
+
 4 rows in set (0.01 sec)
 
+And the mapping is done in the following way
+
+```
+
+
+@Entity
+public class Emp {
+  @Id
+    private Integer eno;
+  @Column
+    private String name;
+  @Column 
+    private String city;
+  @Column
+    private String desig;
+  
+  @OneToOne(mappedBy="employee",cascade=CascadeType.ALL)
+    private Contact contact;
+
+--
+---
+---
+}
+
+```
+
+and In the contact class,
+
+```
+
+@Entity	
+public class Contact {
+  @Id
+   private Integer eno;
+  @Column 
+   private String doorno;
+  @Column
+   private String  street;
+  @Column
+   private String mobile;
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @PrimaryKeyJoinColumn
+ private Emp employee;
+
+ --
+ ---
+ ---
+
+ ```
+
+ 
