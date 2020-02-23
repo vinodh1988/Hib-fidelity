@@ -185,15 +185,15 @@ One to One relation specifies that an entity(A) is associated to only a single i
 Consider the following two tables
 
 mysql> desc emp;
-+-------+-------------+------+-----+---------+-------+
+
 | Field | Type        | Null | Key | Default | Extra |
-+-------+-------------+------+-----+---------+-------+
+|-------|-------------|------|-----|---------|-------|
 | eno   | int(11)     | NO   | PRI | NULL    |       |
 | name  | varchar(30) | NO   |     | NULL    |       |
 | city  | varchar(30) | NO   |     | NULL    |       |
 | desig | varchar(30) | NO   |     | NULL    |       |
 | dno   | int(11)     | YES  |     | NULL    |       |
-+-------+-------------+------+-----+---------+-------+
+|-------|-------------|------|-----|---------|-------|
 5 rows in set (0.59 sec)
 
 mysql> desc contact;
