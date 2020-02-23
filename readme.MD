@@ -71,9 +71,9 @@ public class SessionProvider {
 
 }
 ```
-### Session
+### Session and Transaction
 
-he main runtime interface between a Java application and Hibernate. This is the central API class abstracting the notion of a persistence service.
+the main runtime interface between a Java application and Hibernate. This is the central API class abstracting the notion of a persistence service.
 
 The lifecycle of a Session is bounded by the beginning and end of a logical transaction. (Long transactions might span several database transactions.)
 
@@ -112,3 +112,29 @@ A typical transaction should use the following idiom:
  }
 
 ```
+
+### Query and Hibernate Query Language
+
+An object-oriented representation of a Hibernate query. A Query instance is obtained by calling Session.createQuery(). This interface exposes some extra functionality beyond that provided by Session.iterate() and Session.find():
+
+* a particular page of the result set may be selected by calling setMaxResults(), setFirstResult()
+* named query parameters may be used
+* the results may be returned as an instance of 
+
+## Hibernate Query Language
+
+The Hibernate ORM framework provides its own query language called Hibernate Query Language or HQL for short. It is very powerful and flexible and has the following characteristics:
+
+### SQL similarity: 
+
+HQL’s syntax is very similar to standard SQL. If you are familiar with SQL then writing HQL would be pretty easy: from SELECT, FROM, ORDERBY to arithmetic expressions and aggregate functions, etc.
+### Fully object-oriented: 
+
+HQL doesn’t use real names of table and columns. It uses class and property names instead. HQL can understand inheritance, polymorphism and association.
+
+### Case-insensitive for keywords: 
+Like SQL, keywords in HQL are case-insensitive. That means SELECT, select or Select are the same.
+
+### Case-sensitive for Java classes and properties: 
+HQL considers case-sensitive names for Java classes and their properties, meaning Person and person are two different objects.
+
