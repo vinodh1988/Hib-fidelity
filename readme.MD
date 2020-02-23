@@ -180,3 +180,30 @@ You can map each of them as a uni- or bidirectional association. That means you 
 
 ## One to One mapping
 
+One to One relation specifies that an entity(A) is associated to only a single instance of another entity(B). From database perspective, you can assume that if table A has a one to one mapping with table B, then each row of Table B will have a foreign key column which refers to a primary key of Table A.
+
+Consider the following two tables
+
+mysql> desc emp;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| eno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | NO   |     | NULL    |       |
+| city  | varchar(30) | NO   |     | NULL    |       |
+| desig | varchar(30) | NO   |     | NULL    |       |
+| dno   | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.59 sec)
+
+mysql> desc contact;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eno    | int(11)     | NO   | PRI | NULL    |       |
+| doorno | varchar(30) | NO   |     | NULL    |       |
+| street | varchar(30) | NO   |     | NULL    |       |
+| mobile | varchar(15) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
