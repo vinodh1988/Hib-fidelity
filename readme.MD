@@ -328,4 +328,135 @@ public class Emp {
 }
 ```
 
+## Many to many relationship
+
+The following two tables has many to many relationship and is handled this
+way
+
+mysql> desc course;
+
+| Field | Type        | Null | Key | Default | Extra |
+|-------|-------------|------|-----|---------|-------|
+| cno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | NO   |     | NULL    |       |
+
+2 rows in set (0.06 sec)
+
+mysql> desc trainer;
+
+| Field | Type        | Null | Key | Default | Extra |
+|-------|-------------|------|-----|---------|-------|
+| tno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(30) | NO   |     | NULL    |       |
+
+
+2 rows in set (0.06 sec)
+
+mysql> desc course_Trainer;
+
+| Field | Type    | Null | Key | Default | Extra |
+|-------|---------|------|-----|---------|-------|
+| cno   | int(11) | YES  |     | NULL    |       |
+| tno   | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+And the mapping is done in the following way...
+
+```
+
+
+@Entity
+public class Course {
+
+	@Id
+	   private Integer cno;
+	@Column
+	   private String name;
+	
+	@ManyToMany(mappedBy = "courses", cascade=CascadeType.ALL)
+	private Set<Trainer> trainers;
+	
+	public Course() {}
+	public Course(Integer cno,String name) {
+		this.cno=cno;
+		this.name=name;
+	}
+	
+	
+	public Set<Trainer> getTrainers() {
+		return trainers;
+	}
+	public void setTrainers(Set<Trainer> trainers) {
+		this.trainers = trainers;
+	}
+	public Integer getCno() {
+		return cno;
+	}
+	public void setCno(Integer cno) {
+		this.cno = cno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+}
+
+```
+
+and the trainer class is configured this way
+
+```
+
+@Entity
+public class Trainer {
+
+	  @Id
+	   private Integer tno;
+	  @Column
+	   private String name;
+	  
+	  @ManyToMany(cascade=CascadeType.ALL)
+	  @JoinTable(name="course_trainer" ,
+	  joinColumns=@JoinColumn(name="tno"),
+	  inverseJoinColumns=@JoinColumn(name="cno"))
+	  Set<Course> courses;
+	 
+	  
+	  public Trainer() {}
+	  public Trainer(Integer tno,String name) {
+		  this.tno=tno;
+		  this.name=name;
+	  }
+	  
+	  
+	public Set<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+	public Integer getTno() {
+		return tno;
+	}
+	public void setTno(Integer tno) {
+		this.tno = tno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	  
+	  
+	  
+}
+```
+
+
 
