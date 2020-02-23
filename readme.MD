@@ -458,5 +458,28 @@ public class Trainer {
 }
 ```
 
+## Eager and Lazy Loading
+
+Fetching or loading data can be primarily classified into two types: eager and lazy.
+
+1. Eager Loading And Lazy Loading
+
+The first thing that we should discuss here is what lazy loading and eager loading are:
+
+Eager Loading is a design pattern in which data initialization occurs on the spot. It means that collections are fetched fully at the time their parent is fetched (fetch immediately)
+
+Lazy Loading is a design pattern which is used to defer initialization of an object until the point at which it is needed. This can effectively contribute to application's performance.
+
+By default Hibernate follows lazy loading
+
+And to configure eager Loading
+
+```
+  
+  @OneToMany(mappedBy = "dept", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+  private Set<Emp> employees;
+
+```
+
 
 

@@ -16,7 +16,7 @@ public class Dept {
   @Column
      private String name;
   
-  @OneToMany(mappedBy = "dept", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "dept", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
   private Set<Emp> employees;
   
     public Dept() {}
