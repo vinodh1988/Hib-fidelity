@@ -138,3 +138,33 @@ Like SQL, keywords in HQL are case-insensitive. That means SELECT, select or Sel
 ### Case-sensitive for Java classes and properties: 
 HQL considers case-sensitive names for Java classes and their properties, meaning Person and person are two different objects.
 
+```
+Query q=session.createQuery("from Person where name like 'A%'");
+List<Person> list=q.list();
+```
+
+## Criteria and Criterion
+
+Criteria is a simplified API for retrieving entities by composing Criterion objects. This is a very convenient approach for functionality like "search" screens where there is a variable number of conditions to be placed upon the result set.
+
+The Session is a factory for Criteria. Criterion instances are usually obtained via the factory methods on Restrictions. eg.
+
+```
+ List cats = session.createCriteria(Cat.class)
+     .add( Restrictions.like("name", "Iz%") )
+     .add( Restrictions.gt( "weight", new Float(minWeight) ) )
+     .addOrder( Order.asc("age") )
+     .list();
+```
+
+#### Criterion
+
+An object-oriented representation of a query criterion that may be used as a restriction in a Criteria query. Built-in criterion types are provided by the Restrictions factory class. This interface might be implemented by application classes that define custom restriction criteria.
+  
+```
+  Criteria criteria=session.createCriteria(Person.class);
+  Criterion c=Restrictions.like("name","V%");
+  List<Person> list=c.list();
+```
+ 
+
