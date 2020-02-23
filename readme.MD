@@ -71,3 +71,44 @@ public class SessionProvider {
 
 }
 ```
+### Session
+
+he main runtime interface between a Java application and Hibernate. This is the central API class abstracting the notion of a persistence service.
+
+The lifecycle of a Session is bounded by the beginning and end of a logical transaction. (Long transactions might span several database transactions.)
+
+The main function of the Session is to offer create, read and delete operations for instances of mapped entity classes. Instances may exist in one of three states:
+
+* transient: never persistent, not associated with any Session
+* persistent: associated with a unique Session
+* detached: previously persistent, not associated with any Session
+
+Transient instances may be made persistent by calling save(), persist() or saveOrUpdate(). Persistent instances may be made transient by calling delete(). Any instance returned by a get() or load() method is persistent. Detached instances may be made persistent by calling update(), saveOrUpdate(), lock() or replicate(). The state of a transient or detached instance may also be made persistent as a new persistent instance by calling merge().
+
+save() and persist() result in an SQL INSERT, delete() in an SQL DELETE and update() or merge() in an SQL UPDATE. Changes to persistent instances are detected at flush time and also result in an SQL UPDATE. saveOrUpdate() and replicate() result in either an INSERT or an UPDATE.
+
+It is not intended that implementors be threadsafe. Instead each thread/transaction should obtain its own instance from a SessionFactory.
+
+A Session instance is serializable if its persistent classes are serializable.
+
+A typical transaction should use the following idiom:
+
+```
+
+ Session sess = factory.openSession();
+ Transaction tx;
+ try {
+     tx = sess.beginTransaction();
+     //do some work
+     ...
+     tx.commit();
+ }
+ catch (Exception e) {
+     if (tx!=null) tx.rollback();
+     throw e;
+ }
+ finally {
+     sess.close();
+ }
+
+```
