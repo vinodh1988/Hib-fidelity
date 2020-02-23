@@ -166,5 +166,17 @@ An object-oriented representation of a query criterion that may be used as a res
   Criterion c=Restrictions.like("name","V%");
   List<Person> list=c.list();
 ```
- 
+ ## Association Mappings
+
+Association mappings are one of the key features of JPA and Hibernate. They model the relationship between two database tables as attributes in your domain model. That allows you to easily navigate the associations in your domain model and JPQL or Criteria queries.
+
+JPA and Hibernate support the same associations as you know from your relational database model. You can use:
+
+* one-to-one associations,
+* many-to-one associations and
+* many-to-many associations.
+
+You can map each of them as a uni- or bidirectional association. That means you can either model them as an attribute on only one of the associated entities or on both. That has no impact on your database mapping, but it defines in which direction you can use the relationship in your domain model and JPQL or Criteria queries
+
+## One to One mapping
 
